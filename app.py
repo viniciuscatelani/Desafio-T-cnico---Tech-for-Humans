@@ -41,8 +41,10 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Cabeçalho
-st.markdown("<h1 class='main-header'>🏦 Banco Ágil</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #666;'>Atendimento Virtual Inteligente</p>", unsafe_allow_html=True)
+st.markdown("<h1 class='main-header'>🏦 Banco Ágil</h1>",
+            unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #666;'>Atendimento Virtual Inteligente</p>",
+            unsafe_allow_html=True)
 
 # Inicializa o sistema no session_state
 if 'sistema' not in st.session_state:
@@ -56,10 +58,11 @@ if not st.session_state.conversa_ativa:
         st.session_state.messages = []
         st.session_state.sistema = BancoAgilSystem()
         st.session_state.conversa_ativa = True
-        
+
         # Mensagem inicial
         resposta = st.session_state.sistema.processar_mensagem("")
-        st.session_state.messages.append({"role": "assistant", "content": resposta})
+        st.session_state.messages.append(
+            {"role": "assistant", "content": resposta})
         st.rerun()
 
 # Exibe histórico de mensagens
@@ -83,7 +86,7 @@ for message in st.session_state.messages:
 if st.session_state.conversa_ativa:
     with st.container():
         col1, col2 = st.columns([5, 1])
-        
+
         with col1:
             user_input = st.text_input(
                 "Digite sua mensagem:",
@@ -91,26 +94,29 @@ if st.session_state.conversa_ativa:
                 label_visibility="collapsed",
                 placeholder="Digite sua mensagem aqui..."
             )
-        
+
         with col2:
-            send_button = st.button("Enviar", type="primary", use_container_width=True)
-        
+            send_button = st.button(
+                "Enviar", type="primary", use_container_width=True)
+
         if send_button and user_input:
             # Adiciona mensagem do usuário
-            st.session_state.messages.append({"role": "user", "content": user_input})
-            
+            st.session_state.messages.append(
+                {"role": "user", "content": user_input})
+
             # Processa mensagem
             resposta = st.session_state.sistema.processar_mensagem(user_input)
-            
+
             # Adiciona resposta do agente
-            st.session_state.messages.append({"role": "assistant", "content": resposta})
-            
+            st.session_state.messages.append(
+                {"role": "assistant", "content": resposta})
+
             # Verifica se a conversa foi encerrada
             if st.session_state.sistema.conversa_encerrada:
                 st.session_state.conversa_ativa = False
-            
+
             st.rerun()
-    
+
     # Botão para encerrar conversa
     st.divider()
     if st.button("❌ Encerrar Atendimento", use_container_width=True):
@@ -128,26 +134,6 @@ with st.sidebar:
     - 📈 Solicitação de aumento de limite
     - 🗣️ Entrevista de crédito
     - 💱 Cotação de moedas
-    
+
     ---
-    
-    **Como usar:**
-    1. Clique em "Iniciar Atendimento"
-    2. Informe seu CPF
-    3. Informe sua data de nascimento
-    4. Escolha o serviço desejado
-    
-    ---
-    
-    **CPFs de teste:**
-    - 12345678901 (15/05/1990)
-    - 98765432100 (22/08/1985)
-    - 11122233344 (10/03/1992)
-    - 55566677788 (30/11/1988)
     """)
-    
-    if st.session_state.conversa_ativa:
-        st.divider()
-        st.info(f"**Agente atual:** {st.session_state.sistema.agente_atual}")
-        if st.session_state.sistema.cliente_autenticado:
-            st.success("✅ Cliente autenticado")

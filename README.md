@@ -74,7 +74,6 @@ Usuário → Streamlit UI → Sistema de Agentes → LLM (Gemini) → Resposta
 ### 🎯 Diferenciais
 
 * Interface limpa e intuitiva
-* Feedback visual do agente atual
 * Histórico de conversa persistente
 * Transições suaves entre agentes
 * Validação robusta de dados
@@ -114,7 +113,7 @@ pip install -r requirements.txt
 Crie um arquivo `.env` na raiz do projeto:
 
 ```bash
-GOOGLE_API_KEY=sua_chave_gemini_aqui
+GEMINI_API_KEY=sua_chave_gemini_aqui
 TAVILY_API_KEY=sua_chave_tavily_aqui
 ```
 

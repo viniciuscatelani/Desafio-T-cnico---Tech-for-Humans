@@ -1,6 +1,6 @@
 # 🏦 Banco Ágil - Sistema de Atendimento com Agentes de IA
 
-Sistema multi-agente para atendimento bancário digital desenvolvido com LangChain, LangGraph, Gemini API e Streamlit.
+Sistema multi-agente para atendimento bancário digital desenvolvido com LangChain, Gemini API e Streamlit.
 
 ## 📋 Visão Geral
 
